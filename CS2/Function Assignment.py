@@ -14,19 +14,21 @@ import random
 
 
 def reverse(name):
-    print(name[::-1])
-
     length = len(name) -1
     while length >= 0:
-        print(name[length])
+        return(name[length])
         length = length - 1
+        
+    return(name[::-1])
+
+
 
 def vowels(name):
     count = 0
     for char in name:
         if char in ["a", "e", "i", "o", "u"]:
             count += 1
-    print(f'There are {count} vowels in your name.')
+        return(f'There are {count} vowels in your name.')
     return count
 
 def consonant_freq(name):
@@ -34,7 +36,6 @@ def consonant_freq(name):
     for char in name:
         if char in ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]:
             c_count += 1
-    print(f'There are {c_count} consonants in your name')
     return c_count
 
 def first_name(names):
@@ -66,9 +67,9 @@ def uppercase(name):
 def is_palindrome(name):
     flipped = name[::-1]
     if flipped == name:
-        True
+        return True
     else:
-        False
+        return False
 
 #def initials(name):
 
@@ -84,28 +85,59 @@ def main():
     name = input("Enter your full name: ")
     names = name.split(" ")
 
-#while True:
-   # userchoice = input('''Which would you like to do?
-   # 1. Reverse name
-    #2. Count vowels
-    #3. Count consonants
-    #4. Find the index of 
-   # ''')
-    
-    reverse(name)
-    vowels(name)
-    consonant_freq(name)
-    index = name.find(" ")
-    first_name(names)
-    index2 = name.find(" ", index + 1)
-    middle_name(name, index, index2, names)
-    last_name(names)
-    hyphen(name)
-    lowercase(name)
-    uppercase(name)
-    is_palindrome(name)
-    #initials(name)
-    is_distinction(name)
+    while True:
+        userchoice = input('''Which would you like to do? (enter q to quit)
+1. Reverse name
+2. Count vowels
+3. Count consonants
+4. Return first name
+5. Return middle name
+6. Return last name
+7. Return boolean if last name contains a hyphen
+8. Convert to lowercase
+9. Convert to uppercase
+10. Random name (mix up)
+11. Is palindrome
+12. Full name sorted
+13. Initials
+14. Identify distinctions
+
+
+   ''').lower
+        if userchoice == "q":
+            print("bye!")
+            break    
+        elif userchoice == "1":
+            reverse(name)
+        elif userchoice == "2":
+            vowels(name)
+        elif userchoice == "3":
+            consonant_freq(name)
+            print(f'There are {c_count} consonants in your name')
+        elif userchoice =="4":
+            index = name.find(" ")
+            first_name(names)
+            index2 = name.find(" ", index + 1)
+        elif userchoice == "5":
+            middle_name(name, index, index2, names)
+        elif userchoice == "6":
+            last_name(names)   
+        elif userchoice == "7":
+            hyphen(name)
+        elif userchoice == "8": 
+            lowercase(name)
+        elif userchoice == "9":
+            uppercase(name)
+        #elif userchoice == "10":
+            #random_name(name)
+        elif userchoice == "11":
+            is_palindrome(name)
+        #elif userchoice == "12":
+            #namesort(name)
+        #elif userchoice == "13":
+            #initials(name)
+        elif userchoice == "14":
+            is_distinction(name)
 
 
 main()
