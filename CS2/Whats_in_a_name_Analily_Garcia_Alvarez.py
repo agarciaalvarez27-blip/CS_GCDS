@@ -102,7 +102,6 @@ def last_name(names):
     '''
     return(names[-1])
 
-#def mix(name):
 
 def has_hyphen(name):
     '''
