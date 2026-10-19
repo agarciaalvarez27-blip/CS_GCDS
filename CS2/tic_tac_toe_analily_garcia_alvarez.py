@@ -4,16 +4,16 @@ def display_board(board):
     
     return board
 
-def get_player_move(board):
-    userxrow = input("X row: ")
-    userxcol = input("X column: ")
-    userorow = input("O row: ")
-    userocol = input("O column: ")
-    if userxrow < 4 and userxcol < 4 and userorow < 4 and userocol < 4:
-        board[userxrow -1][userxcol -1]= "x"
-        board[userorow -1][userocol -1]= "o"
-    else:
-        print("Please enter valid positions")
+def get_player_move(board, player):
+
+        playerrow = input(f"{player} row: ")
+        playercol = input(f"{player} column: ")
+        if int(playerrow) <= 4 and int(playercol) <= 4:
+            board[int(playerrow) -1][int(playerrow) -1]= player
+        else:
+            print("Please enter valid positions")
+            #reprompt the getplayermove
+
     # make the space unavailable after filled
 
 
@@ -70,7 +70,7 @@ def main():
     while True:
 
         print(f"   1   2   3\n1  {board[0][0]} | {board[0][1]} | {board[0][2]}\n  -----------\n2  {board[1][0]} | {board[1][1]} | {board[1][2]}\n  -----------\n3  {board[2][0]} | {board[2][1]} | {board[2][2]}")
-        get_player_move(board)
+        get_player_move(board,player)
         if check_winner(board, player) == True:
             print(f'Congratulations, {player}, you win!')
         
