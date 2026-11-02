@@ -22,11 +22,15 @@ def display_board(board):
 
 def get_player_move(board, player):
     '''
-        description:
+        description: asks the current player (x or o) where they want to position their x or o
 
         parameters:
-
+        board(list): a list of lists that include the board modified by the players
+        player(str): the player, x or o
         returns:
+        board(list): modified where the player placed their piece
+        except:
+        ValueError if the player didn't include an int
 
     '''
     while True: 
@@ -52,12 +56,11 @@ def check_winner(board, player):
     Checks if the board has any winner and returns a boolean if it did
 
     parameters:
-
-    board(list):
-    player(str):
+    board(list): list of lists that include the board modified by the players
+    player(str): the player, x or o
 
     returns:
-    boolean: 
+    boolean: True if there exists a winner; false if nobody has won yet or at all
     '''
 
     if board[0][0] == player and board [0][1] == player and board [0][2] == player:
@@ -128,9 +131,9 @@ def play_game():
      get_player_move(board, player)
      if check_winner(board, player) == True:
          display_board(board)
-         print(f'Congratulations, player {player}, you win!')
+         print(f'Congratulations, player {player}, you win! ❀')
          while True: 
-          is_restart = input("Would you like to play again?").lower()
+          is_restart = input("Would you like to play again? ").lower()
           if is_restart == "yes":
                  board = [[' ', ' ', ' '],
                           [' ', ' ', ' '],
@@ -147,7 +150,7 @@ def play_game():
      elif is_draw(board) == True:
          print("It's a draw! ❀")
          while True:
-          is_restart = input("Would you like to play again?").lower()        
+          is_restart = input("Would you like to play again? ").lower()        
           if is_restart == "yes":
                 board = [[' ', ' ', ' '],
                          [' ', ' ', ' '],
