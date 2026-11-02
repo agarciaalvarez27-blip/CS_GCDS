@@ -1,24 +1,65 @@
-#Plan work work plan
+'''
+Name: Analily Garcia Alvarez
+Description: Tic Tac Toe Game
+Bugs: 
+Date: October 22, 2026
+Bonuses:
+Logs: 
 
+'''
 def display_board(board):
-    
+    '''
+    Description: Displays and returns the board
+
+    Parameters: 
+    board(list): a list of lists that include the board modified by the player
+    Returns: 
+    board(list): a list of lists that the player modifies
+    '''
+    print(f"   1   2   3\n1  {board[0][0]} | {board[0][1]} | {board[0][2]}\n  -----------\n2  {board[1][0]} | {board[1][1]} | {board[1][2]}\n  -----------\n3  {board[2][0]} | {board[2][1]} | {board[2][2]}")
+
     return board
 
 def get_player_move(board, player):
+    '''
+        description:
 
-        playerrow = input(f"{player} row: ")
-        playercol = input(f"{player} column: ")
-        if int(playerrow) <= 4 and int(playercol) <= 4:
-            board[int(playerrow) -1][int(playerrow) -1]= player
-        else:
-            print("Please enter valid positions")
-            #reprompt the getplayermove
+        parameters:
 
-    # make the space unavailable after filled
+        returns:
+
+    '''
+    while True: 
+        try: 
+            player_row = int(input(f"{player} row: "))
+            player_col = int(input(f"{player} column: "))          
+            if player_row >= 1 and player_row <= 3 and player_col >=1 and player_col <= 3:
+             if board[player_row - 1][player_col - 1] == " ":
+                board[player_row -1][player_col - 1]= player
+                return
+             else:
+              print("oops! that space is filled. please enter a valid position")
+            else:
+             print("Please enter valid positions")
+        except ValueError:
+            print("Please enter numbers only.")
+
 
 
 def check_winner(board, player):
-    winner = ""
+    '''
+    description:
+    Checks if the board has any winner and returns a boolean if it did
+
+    parameters:
+
+    board(list):
+    player(str):
+
+    returns:
+    boolean: 
+    '''
+
     if board[0][0] == player and board [0][1] == player and board [0][2] == player:
         return True
     elif board[1][0] == player and board [1][1] == player and board [1][2] == player:
@@ -38,16 +79,26 @@ def check_winner(board, player):
     else:
         return False
 
-    return winner
-    #figure out how to get which player it is
+
 
 def is_draw(board):
+    '''
+    description:
+    verifies if the game is a drw or not and sends a boolean in return
+
+    parameters:
+    board(list): list of list that updates when the user inputs 
+
+    returns:
+    Boolean: true or false depending on whether the requirement of the board being full is fulfilled
+    
+    '''
     counter = 0
     for row in range(3):
         for col in range(3):
             if board[row][col] == "x" or board[row][col] == "o": 
                 counter += 1
-            return counter
+
 
     if counter == 9:
         return True
@@ -58,25 +109,58 @@ def is_draw(board):
 
 
 
-def main():
-    player = "x"
-    player = "o"
+def play_game():
     board = [[" ", " ", " "],
              [" ", " ", " "],
              [" ", " ", " "]]
-
-    result = check_winner(board, "X")
-    print(result)
+    turn = 1
     while True:
+     
+     if turn in range(1, 10, 2):
+            player = "x"
+     else:
+            player = "o"
 
-        print(f"   1   2   3\n1  {board[0][0]} | {board[0][1]} | {board[0][2]}\n  -----------\n2  {board[1][0]} | {board[1][1]} | {board[1][2]}\n  -----------\n3  {board[2][0]} | {board[2][1]} | {board[2][2]}")
-        get_player_move(board,player)
-        if check_winner(board, player) == True:
-            print(f'Congratulations, {player}, you win!')
+    
+     display_board(board)
+     print(f"Player {player}, enter your coordinates:")
+
+     get_player_move(board, player)
+     if check_winner(board, player) == True:
+         display_board(board)
+         print(f'Congratulations, player {player}, you win!')
+         while True: 
+          is_restart = input("Would you like to play again?").lower()
+          if is_restart == "yes":
+                 board = [[' ', ' ', ' '],
+                          [' ', ' ', ' '],
+                          [' ', ' ', ' ']]
+                 turn = 1
+                 break
+          elif is_restart == "no":
+                 return
+          else:
+              print("Please enter yes or no.")
+         
+
         
-        if is_draw(board) == True:
-            break
+     elif is_draw(board) == True:
+         print("It's a draw! ❀")
+         while True:
+          is_restart = input("Would you like to play again?").lower()        
+          if is_restart == "yes":
+                board = [[' ', ' ', ' '],
+                         [' ', ' ', ' '],
+                         [' ', ' ', ' ']]
+                turn = 1
+                break
+          elif is_restart == "no":
+             return          
+          else:    
+             print("Please enter yes or no.")
+     else:
+             turn += 1
+            
 
 
-
-main()
+play_game()
