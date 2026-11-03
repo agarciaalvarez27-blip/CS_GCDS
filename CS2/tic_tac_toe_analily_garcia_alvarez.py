@@ -141,6 +141,7 @@ def play_game():
                  turn = 1
                  break
           elif is_restart == "no":
+                 print("bye!")
                  return
           else:
               print("Please enter yes or no.")
@@ -158,6 +159,7 @@ def play_game():
                 turn = 1
                 break
           elif is_restart == "no":
+             print("bye!")
              return          
           else:    
              print("Please enter yes or no.")
