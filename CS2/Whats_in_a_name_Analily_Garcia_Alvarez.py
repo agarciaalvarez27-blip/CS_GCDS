@@ -5,6 +5,7 @@ Bugs: None known
 Date: 9/30/2026
 Bonuses:
 Log: Initial version: 9/30/2026
+1.1 11/9/2026 fixed the is_palindrome function
 '''
 
 
@@ -237,8 +238,7 @@ def main():
 13. Initials
 14. Identify distinctions
 
-
-   ''').lower()
+Enter your choice: ''').lower()
         if userchoice == "q":
             print("bye!")
             break    
@@ -266,7 +266,10 @@ def main():
         elif userchoice == "10":
             print(random_name(name))
         elif userchoice == "11":
-            print(is_palindrome(name))
+            if is_palindrome(name) == False:
+                print("Your name is not a palindrome")
+            elif is_palindrome(name) == True:
+                print("Your name is a palindrome")
         elif userchoice == "12":
             print(name_sort(name))
         elif userchoice == "13":
